@@ -32,23 +32,20 @@ form.addEventListener('submit', event => {
   loader.style.display = 'block';
 
   fetchImages(query, page)
-    .then(({ hits }) => {
-      setTimeout(() => {
-        loader.style.display = 'none';
-        if (!hits || hits.length === 0) {
-          iziToast.error({
-            message:
-              'Sorry, there are no images matching your search query. Please try again!',
-            position: 'topRight',
-          });
-        } else {
-          renderGallery(hits);
-          lightbox.refresh();
-        }
-      }, 1000);
-    })
-    .catch(error => {
-      loader.style.display = 'none';
-      iziToast.error({ title: 'Error', message: 'Failed to fetch images' });
-    });
-});
+  .then(({ hits }) => {
+    loader.style.display = 'none'; // Сховати лоадер без затримки
+    if (!hits || hits.length === 0) {
+      iziToast.error({
+        message:
+          'Sorry, there are no images matching your search query. Please try again!',
+        position: 'topRight',
+      });
+    } else {
+      renderGallery(hits);
+      lightbox.refresh();
+    }
+  })
+  .catch(error => {
+    loader.style.display = 'none';
+    iziToast.error({ title: 'Error', message: 'Failed to fetch images' });
+  });
