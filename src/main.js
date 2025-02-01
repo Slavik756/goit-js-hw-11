@@ -49,3 +49,4 @@ form.addEventListener('submit', event => {
     loader.style.display = 'none';
     iziToast.error({ title: 'Error', message: 'Failed to fetch images' });
   });
+});
